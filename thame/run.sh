@@ -228,7 +228,7 @@ while true; do
                 php artisan optimize:clear
                 
                 echo -e "${CYAN}Running Arix Installer...${RESET}"
-                php artisan arix
+                php artisan arix install < /dev/tty
                 
                 echo -e "${CYAN}Finalizing installation...${RESET}"
                 php artisan migrate --force
