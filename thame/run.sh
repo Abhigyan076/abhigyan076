@@ -213,12 +213,15 @@ while true; do
             draw_box
             echo ""
             echo -e "${MAGENTA}Installing Arix Theme...${RESET}"
-            cd /var/www/pterodactyl || exit
+            cd /var/www || exit
             apt-get install -y unzip
             wget -q -O arix.zip https://github.com/Abhigyan076/abhigyan076/raw/refs/heads/main/thame/arix.zip
             if [ -f arix.zip ]; then
                 unzip -o arix.zip
                 rm arix.zip
+                # Cleanup the accidental folder from the previous failed install if it exists
+                rm -rf /var/www/pterodactyl/pterodactyl 2>/dev/null
+                cd /var/www/pterodactyl || exit
                 php artisan arix
                 php artisan migrate --force && php artisan optimize:clear && php artisan optimize && chmod -R 755 storage/* bootstrap/cache
                 echo -e "${GREEN}Arix Theme installed successfully!${RESET}"
