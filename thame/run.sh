@@ -234,6 +234,9 @@ while true; do
                 php artisan migrate --force
                 php artisan optimize:clear
                 php artisan optimize
+                
+                echo -e "${CYAN}Applying final permissions...${RESET}"
+                chown -R www-data:www-data /var/www/pterodactyl
                 chmod -R 755 storage/* bootstrap/cache
                 
                 echo -e "${GREEN}Arix Theme installed successfully!${RESET}"
