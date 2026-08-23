@@ -212,7 +212,12 @@ while true; do
             clear
             draw_box
             echo ""
-            echo -e "${MAGENTA}Installing Arix Theme...${RESET}"
+            echo -e "${MAGENTA}Preparing for Arix Theme Installation...${RESET}"
+            cd /var/www/pterodactyl || exit
+            
+            echo -e "${CYAN}Restoring clean Pterodactyl files to prevent theme conflicts...${RESET}"
+            curl -L https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz | tar -xzv
+            
             cd /var/www || exit
             apt-get install -y unzip
             wget -q -O arix.zip https://github.com/Abhigyan076/abhigyan076/raw/refs/heads/main/thame/arix.zip
