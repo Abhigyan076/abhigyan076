@@ -2,18 +2,22 @@
 
 One-command setup for Panel + Wings 🚀
 
-## 🚀 Install
+## 🚀 Install Command
+Run this exact command on your Ubuntu server as root:
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/Abhigyan076/abhigyan076/refs/heads/main/menu/UI.sh)
 ```
 
 ## 📦 Includes
-- Pterodactyl Panel
-- Wings Daemon
-- Docker Engine
-- NGINX Web Server
-- MySQL / MariaDB
-- Redis Server
+- Pterodactyl Panel & Wings
+- Docker Engine & NGINX
+- MySQL / MariaDB & Redis
+
+## 🎨 Themes & Addons
+- **Arix Theme** (Automated Install)
+- Hyper V1 Theme
+- Blueprint Framework & Extensions
+- 20+ Blueprint Themes (Nebula, Euphoria, etc.)
 
 ## 🧱 Requirements
 - Ubuntu 20.04+
