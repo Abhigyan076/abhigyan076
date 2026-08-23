@@ -50,6 +50,7 @@ while true; do
     echo -e "   ${YELLOW}[2]${RESET} Theme"
     echo -e "   ${YELLOW}[3]${RESET} Extensions"
     echo -e "   ${YELLOW}[4]${RESET} Hyper V1 🚀"
+    echo -e "   ${YELLOW}[5]${RESET} Arix Theme 🎨"
     echo ""
     echo -e "   ${RED}[0] Exit${RESET}"
     echo ""
@@ -204,6 +205,26 @@ while true; do
             php artisan config:clear
             chown -R www-data:www-data /var/www/pterodactyl/*
             php artisan queue:restart
+            pause
+            ;;
+
+        5)
+            clear
+            draw_box
+            echo ""
+            echo -e "${MAGENTA}Installing Arix Theme...${RESET}"
+            cd /var/www/pterodactyl || exit
+            apt-get install -y unzip
+            wget -q -O arix.zip https://github.com/Abhigyan076/abhigyan076/raw/refs/heads/main/thame/arix.zip
+            if [ -f arix.zip ]; then
+                unzip -o arix.zip
+                rm arix.zip
+                php artisan arix
+                php artisan migrate --force && php artisan optimize:clear && php artisan optimize && chmod -R 755 storage/* bootstrap/cache
+                echo -e "${GREEN}Arix Theme installed successfully!${RESET}"
+            else
+                echo -e "${RED}Failed to download Arix Theme!${RESET}"
+            fi
             pause
             ;;
 
