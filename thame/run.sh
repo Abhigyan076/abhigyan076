@@ -222,8 +222,20 @@ while true; do
                 # Cleanup the accidental folder from the previous failed install if it exists
                 rm -rf /var/www/pterodactyl/pterodactyl 2>/dev/null
                 cd /var/www/pterodactyl || exit
+                
+                echo -e "${CYAN}Applying permissions and clearing cache...${RESET}"
+                chown -R www-data:www-data /var/www/pterodactyl/*
+                php artisan optimize:clear
+                
+                echo -e "${CYAN}Running Arix Installer...${RESET}"
                 php artisan arix
-                php artisan migrate --force && php artisan optimize:clear && php artisan optimize && chmod -R 755 storage/* bootstrap/cache
+                
+                echo -e "${CYAN}Finalizing installation...${RESET}"
+                php artisan migrate --force
+                php artisan optimize:clear
+                php artisan optimize
+                chmod -R 755 storage/* bootstrap/cache
+                
                 echo -e "${GREEN}Arix Theme installed successfully!${RESET}"
             else
                 echo -e "${RED}Failed to download Arix Theme!${RESET}"
